@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import Select from 'react-select'
 
 function Form() {
   const [comment, setComment] = useState("");
+  const [source, setSource] = useState("");
+  const [target, setTarget] = useState("");
+
   const [id, setId] = useState("");
   const nodeURL = "https://watson-back.herokuapp.com/";
   const dispatch = useDispatch();
@@ -26,8 +30,9 @@ function Form() {
     if (comment) {
       setComment("");
       const commentId = id + "";
-      axios.post(`${nodeURL}comments`, { commentId, comment });
-      axios.post(`${nodeURL}watson`, { id, comment });
+      axios.post('local')
+      // axios.post(`${nodeURL}comments`, { commentId, comment });
+      // axios.post(`${nodeURL}watson`, { id, comment });
       setTimeout(() => loadAll(), 3000);
     } else {
       alert("O comentário está vazio!");
@@ -38,6 +43,18 @@ function Form() {
     loadAll();
   }, [loadAll]);
 
+  const options = [
+    { value: 'en', label: 'English' },
+    { value: 'fr', label: 'French' },
+    { value: 'de', label: 'German' },
+    { value: 'it', label: 'Italian' },
+    { value: 'ja', label: 'Japanese' },
+    { value: 'ko', label: 'Korean' },
+    { value: 'pt', label: 'Portuguese' },
+    { value: 'es', label: 'Spanish' }
+  ]
+
+  
   return (
     <div className="form">
       <p>Comentário</p>
@@ -49,6 +66,10 @@ function Form() {
         onChange={handleChange}
         maxLength="200"
       />
+    Lingua de Entrada:  
+    <Select options={options} onChange={setSource} />
+    Lingua de Saída:  
+    <Select options={options} onChange={setTarget} />
       <button className="button-form" onClick={handleClik}>
         Cadastrar
       </button>
