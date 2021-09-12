@@ -30,7 +30,7 @@ function Form() {
     if (comment) {
       setComment("");
       const commentId = id + "";
-      axios.post('local')
+      axios.post('http://localhost:3001/translator', {comment, source, target})
       // axios.post(`${nodeURL}comments`, { commentId, comment });
       // axios.post(`${nodeURL}watson`, { id, comment });
       setTimeout(() => loadAll(), 3000);
