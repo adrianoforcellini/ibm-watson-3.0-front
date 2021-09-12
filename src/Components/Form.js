@@ -27,13 +27,16 @@ function Form() {
   };
 
   const handleClik = () => {
-    if (comment) {
+    if (comment && source && target ) {
+      if(source.value === target.value){
+        alert("As linguas de entrada e saída precisam ser diferentes.");
+      }
       setComment("");
       const commentId = id + "";
       axios.post('https://text-to-speech3.herokuapp.com/translator', {comment, source, target, commentId})
       setTimeout(() => loadAll(), 3000);
     } else {
-      alert("O comentário está vazio!");
+      alert("O comentário está vazio, ou você não selecionou as linguas de entrada e saída.");
     }
   };
 
