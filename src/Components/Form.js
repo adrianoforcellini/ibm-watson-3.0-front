@@ -30,6 +30,7 @@ function Form() {
     if (comment && source && target ) {
       if(source.value === target.value){
         alert("As linguas de entrada e saída precisam ser diferentes.");
+        return 'linguas precisam ser diferentes' ;
       }
       setComment("");
       const commentId = id + "";
