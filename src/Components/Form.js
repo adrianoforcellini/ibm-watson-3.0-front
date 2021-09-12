@@ -9,7 +9,7 @@ function Form() {
   const [target, setTarget] = useState("");
 
   const [id, setId] = useState("");
-  const nodeURL = "https://watson-back.herokuapp.com/";
+  const nodeURL = "https://text-to-speech3.herokuapp.com/";
   const dispatch = useDispatch();
 
   const loadAll = useCallback(async () => {
@@ -30,9 +30,7 @@ function Form() {
     if (comment) {
       setComment("");
       const commentId = id + "";
-      axios.post('http://localhost:3001/translator', {comment, source, target})
-      // axios.post(`${nodeURL}comments`, { commentId, comment });
-      // axios.post(`${nodeURL}watson`, { id, comment });
+      axios.post('https://text-to-speech3.herokuapp.com/translator', {comment, source, target, commentId})
       setTimeout(() => loadAll(), 3000);
     } else {
       alert("O comentário está vazio!");

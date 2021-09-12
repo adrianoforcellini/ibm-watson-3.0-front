@@ -20,7 +20,7 @@ function Comments({comments}) {
             {comment}
           </div>
           <ReactAudioPlayer
-            src={`https://watson-back.herokuapp.com/${i + 1}.mp3`}
+            src={`https://text-to-speech3.herokuapp.com/${i + 1}.mp3`}
             controls
           />
         </div>      ))}
